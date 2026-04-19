@@ -2,6 +2,7 @@
   "name": "incident-management",
   "version": "1.0.0",
   "dependencies": {
+    "@cap-js/hana": "^2",
     "@sap/cds": "^9"
   },
   "devDependencies": {
@@ -11,24 +12,31 @@
   "scripts": {
     "start": "cds-serve",
     "watch-incidents": "cds watch --open ns.incidents/index.html?sap-ui-xx-viewCache=false --livereload false"
-  },  
-"cds": {
-  "requires": {
-    "[development]": {
-      "auth": {
-        "kind": "mocked",
-        "users": {
+  },
+  "cds": {
+    "requires": {
+      "[development]": {
+        "auth": {
+          "kind": "mocked",
+          "users": {
             "alice": {
-              "roles": ["admin"]
+              "roles": [
+                "admin"
+              ]
             },
             "bob": {
-              "roles": ["support"]
+              "roles": [
+                "support"
+              ]
             }
           }
+        }
+      },
+      "[production]": {
+        "db": "hana"
       }
     }
-  }
-},
+  },
   "private": true,
   "workspaces": [
     "app/*"
